@@ -1,5 +1,7 @@
 import { Equal, Expect, ExpectFalse, NotEqual } from '@type-challenges/utils'
 
+type Unshift<T extends Array<unknown>, U> = [U, ...T]
+
 type cases = [
   Expect<Equal<Unshift<[], 1>, [1]>>,
   Expect<Equal<Unshift<[1, 2], 0>, [0, 1, 2,]>>,
