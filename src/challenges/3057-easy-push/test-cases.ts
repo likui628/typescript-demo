@@ -1,5 +1,7 @@
 import { Equal, Expect, ExpectFalse, NotEqual } from '@type-challenges/utils'
 
+type Push<T extends Array<unknown>, U> = [...T, U]
+
 type cases = [
   Expect<Equal<Push<[], 1>, [1]>>,
   Expect<Equal<Push<[1, 2], '3'>, [1, 2, '3']>>,
