@@ -1,5 +1,7 @@
 import { Equal, Expect } from '@type-challenges/utils'
 
+type Absolute<T extends number | string | bigint> = `${T}` extends `-${infer N}` ? `${N}` : `${T}`
+
 type cases = [
   Expect<Equal<Absolute<0>, '0'>>,
   Expect<Equal<Absolute<-0>, '0'>>,
