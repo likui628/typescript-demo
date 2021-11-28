@@ -1,5 +1,13 @@
 import { Equal, Expect } from '@type-challenges/utils'
 
+/**
+ * Index Signatures
+ * https://www.typescriptlang.org/docs/handbook/2/objects.html#index-signatures
+ */
+type Falsy = 0 | '' | false | [] | { [index: string]: never }
+
+type AnyOf<T extends any[]> = T[number] extends Falsy ? false : true
+
 type cases = [
   Expect<Equal<AnyOf<[1, 'test', true, [1], {name: 'test'}, {1: 'test'}]>, true>>,
   Expect<Equal<AnyOf<[1, '', false, [], {}]>, true>>,
