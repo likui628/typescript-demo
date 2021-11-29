@@ -1,5 +1,13 @@
 import { Equal, Expect } from '@type-challenges/utils'
 
+/**
+ * Conditional Types
+ * https://www.typescriptlang.org/docs/handbook/2/conditional-types.html
+ * Keyof Type Operator
+ * https://www.typescriptlang.org/docs/handbook/2/keyof-types.html
+ */
+type AppendToObject<T, U extends PropertyKey, V> = { [K in (keyof T | U)]: K extends keyof T ? T[K] : V }
+
 type test1 = {
   key: 'cat'
   value: 'green'
