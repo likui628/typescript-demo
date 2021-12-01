@@ -1,5 +1,12 @@
 import { Alike, Expect } from '@type-challenges/utils'
 
+/**
+ * Intersection Types
+ * https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types
+ */
+ type MyReadonly2<T, K extends keyof T = keyof T> = { [P in keyof T as P extends K ? never : P]: T[P] }
+ & { readonly [P in keyof T as P extends K ? P : never]: T[P] }
+ 
 type cases = [
   Expect<Alike<MyReadonly2<Todo1>, Readonly<Todo1>>>,
   Expect<Alike<MyReadonly2<Todo1, 'title' | 'description'>, Expected>>,
