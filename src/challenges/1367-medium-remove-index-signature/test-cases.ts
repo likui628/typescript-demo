@@ -1,5 +1,10 @@
 import { Equal, Expect } from '@type-challenges/utils'
 
+/**
+ * 'foo' extends string  => true
+ *  string extends 'foo' => false
+ */
+type RemoveIndexSignature<T> = { [P in keyof T as string extends P ? never : number extends P ? never : P]: T[P] }
 
 type Foo = {
   [key: string]: any;
