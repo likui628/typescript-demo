@@ -1,5 +1,12 @@
 import { Equal, Expect, ExpectFalse, NotEqual } from '@type-challenges/utils'
 
+type ToObj<T> = { [P in keyof T]: T[P] }
+
+type RequiredByKeys<T, K = keyof T> = ToObj<
+  { [P in keyof T as P extends K ? never : P]: T[P] }
+  & { [P in keyof T as P extends K ? P : never]-?: T[P] }
+>
+
 interface User {
   name?: string
   age?: number
