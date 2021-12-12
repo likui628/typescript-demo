@@ -1,5 +1,9 @@
 import { Equal, Expect } from '@type-challenges/utils'
 
+type StringToUnion<T extends string, U = never> = T extends `${infer H}${infer L}`
+  ? StringToUnion<L, U | H>
+  : U
+  
 type cases = [
   Expect<Equal<StringToUnion<"">, never>>,
   Expect<Equal<StringToUnion<"t">, "t">>,
