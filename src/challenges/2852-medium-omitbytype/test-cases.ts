@@ -1,5 +1,7 @@
 import { Equal, Expect, ExpectFalse, NotEqual } from '@type-challenges/utils'
 
+type OmitByType<T, U> = { [P in keyof T as T[P] extends U ? never : P]: T[P] }
+
 interface Model {
   name: string
   count: number
