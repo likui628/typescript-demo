@@ -1,5 +1,12 @@
 import { Equal, Expect } from '@type-challenges/utils'
 
+type ReplaceKeys<U, T, Y> = U extends any
+  ? { [P in keyof U]
+    : P extends T
+    ? P extends keyof Y
+    ? Y[P] : never : U[P] }
+  : never
+
 type NodeA = {
   type: 'A'
   name: string
