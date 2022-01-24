@@ -1,5 +1,23 @@
 import { Equal, Expect } from '@type-challenges/utils'
 
+type ParseSign<T extends string> = T extends `${infer S}${any}`
+  ? S extends "+" | "-"
+  ? S
+  : ""
+  : "";
+
+type ParsePercent<T extends string> = T extends `${any}%` ? "%" : "";
+
+type ParseNumber<T extends string> =
+  T extends `${ParseSign<T>}${infer N}${ParsePercent<T>}` ? N : "";
+
+
+type PercentageParser<A extends string> = [
+  ParseSign<A>,
+  ParseNumber<A>,
+  ParsePercent<A>
+];
+
 type Case1 = ['', '', '']
 type Case2 = ['+', '', '']
 type Case3 = ['+', '1', '']
